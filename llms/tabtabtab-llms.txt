@@ -1,0 +1,78 @@
+# TabTabTab Docs
+
+TabTabTab runs coding agents in the background, triggered by webhooks, schedules, or Slack. You wire up a trigger and code changes come back as pull requests you can verify before you merge; ops and data-analysis jobs skip the PR and report back when done. Agents run on a persistent cloud machine, on your own Codex or Claude Code accounts. The main path: create an environment at the dashboard (https://dash.tabtabtab.ai), open it, and set up webhooks (the webhook icon in the bottom-left rail), Slack (Settings > Slack), and automations there. Use the environment in the browser, or interact with it via the CLI (`tabtabtab` / `ttt`); the tabtabtab skill (https://github.com/tabtabtabai/tabtabtab-skill) teaches coding agents the full CLI. For help, email support@tabtabtab.ai.
+
+## How work starts (triggers)
+
+- Webhooks: a secret URL that starts a background agent run on every POST. Created in the environment from the webhook icon in the bottom-left rail (or via CLI). `POST https://<env>.tabtabtab.app/webhooks/<token>` with `{message, attachments}`. meta target = a turn on the meta agent; project target = a fresh isolated session.
+- Automations: recurring scheduled runs (once, daily, weekdays, weekly, custom rules; timezone-aware) plus durable jobs that keep re-checking until an end state is met. Set up in the automation panel (below the webhook icon in the bottom-left rail) or by asking the meta agent in plain English.
+- Slack: connected under Settings > Slack in the environment. @mention the TabTabTab bot in a channel; it runs the work in the background and replies in the thread. Answer its questions, permissions, and blocked jobs by replying in-thread.
+
+## The meta agent
+
+A way to launch jobs anywhere on the machine and check what's going on in the environment. It sees every project, session, PR, and schedule, routes work to the right repo, dispatches isolated Lead and worker sessions, and only surfaces questions, permissions, and PRs. Runs supervised (asks you) or yolo (answers from your intent). Workers run on your Codex or Claude Code accounts.
+
+## Verify before you merge (receipts)
+
+Every PR ships with a video of the agent testing the change in a real browser, a preview URL to click the running app, and a trace of what triggered the run and what the agent did.
+
+## Secrets
+
+Set secrets once in the dashboard (`https://dash.tabtabtab.ai/app/environments`). They're encrypted, env-scoped, and injected at runtime. The agent uses them without the raw value being exposed to the model, the transcript, or any output.
+
+## Docs
+
+- [Full markdown docs](/docs.md): Agent-readable documentation.
+- [Overview](/docs/overview): What TabTabTab is and how work flows in as PRs.
+- [Quickstart](/docs/quickstart): Zero to your first background pull request.
+- [How it works](/docs/how-it-works): Triggers, environments, sessions, and the meta agent.
+- [Webhooks](/docs/webhooks): Let any external system start a background agent run.
+- [Automations](/docs/automations): Scheduled runs and durable jobs.
+- [Slack](/docs/slack): Trigger and steer the meta agent from Slack.
+- [Meta Agent](/docs/meta-agent): Launch jobs anywhere on the machine and check on the environment.
+- [Secrets](/docs/secrets): Set secrets once; agents use them without seeing them.
+- [Receipts](/docs/receipts): The proof attached to every PR.
+- [CLI Reference](/docs/cli-reference): Optional CLI for scripts, local coding agents, and terminal-heavy workflows.
+- [Environment](/docs/environment): Watch, steer, and review a running agent.
+- [Preview URL](/docs/preview-url): Preview URLs, localhost access, multi-port routing.
+- [Support](/docs/support): How to reach the team.
+
+## Recommended Start
+
+Use the dashboard first:
+
+```text
+https://dash.tabtabtab.ai
+```
+
+Create an environment, enable GitHub and Codex (or take the $50 in OpenRouter credits included out of the box), then open the environment, add a repository, and wire a trigger (webhook, schedule, or Slack).
+
+## Optional CLI Install
+
+```bash
+curl -fsSL https://tabtabtab.ai/install.sh | sh
+tabtabtab auth login
+```
+
+Coding agents should use the tabtabtab skill instead of memorizing commands: https://github.com/tabtabtabai/tabtabtab-skill
+
+## Common CLI Commands
+
+```bash
+tabtabtab env use $(whoami)
+tabtabtab webhook create bug-reports --project my-app
+tabtabtab agent kick "Fix the flaky tests in api/ and open a PR" --project my-app
+tabtabtab agent status
+tabtabtab agent tail <session-id> --follow
+tabtabtab agent send <session-id> "<message>" --queue
+```
+
+## Agent-Safe Commands
+
+```bash
+tabtabtab env list --json
+tabtabtab agent list --json
+tabtabtab agent kick "<prompt>" --project my-app --json
+tabtabtab webhook list --json
+tabtabtab repo env list --repo my-app --json
+```

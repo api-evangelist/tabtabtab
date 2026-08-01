@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://pypi.org/project/tabtabtab/
+packages:
+  - language: python
+    registry: pypi
+    name: tabtabtab
+    url: https://pypi.org/project/tabtabtab/
+    install: pip install tabtabtab
+    version: 1.20.0
+    official: true
+    kind: cli
+    summary: "Official TabTabTab CLI — run agents in the cloud (command: tabtabtab / ttt)."
+    source_code: https://github.com/tabtabtabai/gv
+  - language: shell
+    registry: script
+    name: tabtabtab-install
+    url: https://tabtabtab.ai/install.sh
+    install: "curl -fsSL https://tabtabtab.ai/install.sh | sh"
+    official: true
+    kind: installer
+    summary: "One-line installer that installs the tabtabtab CLI plus the local coding-agent skill/prompt."
+notes: >-
+  The first-party distributable is a CLI, not a client-library SDK, so no `SDKs`
+  pointer is emitted. The npm package named `tabtabtab` is an unrelated
+  tab-completion fork (alecdibble) and is NOT first-party.

@@ -1,0 +1,88 @@
+generated: '2026-07-21'
+method: searched
+source: https://tabtabtab.ai/docs/cli-reference
+name: tabtabtab
+aliases: [ttt]
+summary: >-
+  First-party CLI to drive the TabTabTab platform from a terminal or a local
+  coding agent: create cloud dev environments, put repositories on them, start
+  and steer remote background agents, manage webhooks, and ask the meta agent to
+  build automations. Control plane at api.tabtabtab.ai; agents/webhooks at
+  <env>.tabtabtab.app.
+install:
+  - method: script
+    command: "curl -fsSL https://tabtabtab.ai/install.sh | sh"
+  - method: pip
+    command: "pip install tabtabtab"
+    package: https://pypi.org/project/tabtabtab/
+auth:
+  command: "tabtabtab auth login"
+  mechanism: browser OAuth
+conventions:
+  json_output: "Pass --json on any command you parse."
+  destructive_guard: "env destroy, webhook revoke, repo env rm refuse without --yes."
+  session_ids: "Accept unique prefixes, e.g. ses_195d9f."
+command_groups:
+  - group: auth
+    commands:
+      - "tabtabtab auth login"
+  - group: env
+    description: Long-lived cloud VM environments.
+    commands:
+      - "tabtabtab env create --name <name>"
+      - "tabtabtab env list --json"
+      - "tabtabtab env use <name>"
+      - "tabtabtab env info --reveal"
+      - "tabtabtab env destroy <name> --yes"
+  - group: agent
+    description: Kick off, watch, and steer background agent runs (incl. the meta agent).
+    commands:
+      - "tabtabtab agent kick \"<prompt>\""
+      - "tabtabtab agent kick \"<prompt>\" --project <repo>"
+      - "tabtabtab agent kick \"<prompt>\" --watch"
+      - "tabtabtab agent list --json"
+      - "tabtabtab agent tail <session-id> --follow"
+      - "tabtabtab agent last <session-id>"
+      - "tabtabtab agent send <session-id> \"<message>\" --queue"
+      - "tabtabtab agent abort <session-id>"
+      - "tabtabtab agent status"
+  - group: webhook
+    description: Secret trigger URLs that start background runs.
+    commands:
+      - "tabtabtab webhook create <name> --project <repo>"
+      - "tabtabtab webhook list --reveal"
+      - "tabtabtab webhook revoke <name> --yes"
+  - group: repo
+    description: Repositories and per-repo env vars/secrets on an environment.
+    commands:
+      - "tabtabtab repo add <git-url-or-dir> --yes"
+      - "tabtabtab repo list --json"
+      - "tabtabtab repo sync --repo <repo>"
+      - "tabtabtab repo env list --repo <repo> --reveal"
+      - "tabtabtab repo env add KEY=VALUE --repo <repo> --secret"
+  - group: files
+    commands:
+      - "tabtabtab upload <local paths...> --to <remote path>"
+      - "tabtabtab download <remote paths...> --to <local dir>"
+  - group: runtime
+    description: Bring up an onboarded repo runtime and expose preview URLs.
+    commands:
+      - "tabtabtab runtime up"
+      - "tabtabtab runtime status"
+      - "tabtabtab runtime ports"
+      - "tabtabtab runtime preview <port>"
+      - "tabtabtab runtime preview <port> --port <name>:<port>"
+      - "tabtabtab runtime logs"
+      - "tabtabtab runtime rebuild"
+      - "tabtabtab runtime down"
+  - group: open
+    description: Attach a local editor or shell to the cloud machine.
+    commands:
+      - "tabtabtab open vscode"
+      - "tabtabtab open cursor"
+      - "tabtabtab ssh"
+      - "tabtabtab ssh -- <command>"
+key_flows:
+  - "Zero-to-PR: env create -> repo add -> webhook create -> agent kick."
+  - "Preview a running app: runtime up -> runtime preview <port> (named routes for multi-port)."
+  - "Drive from a local coding agent via the tabtabtab skill: https://github.com/tabtabtabai/tabtabtab-skill"

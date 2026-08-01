@@ -1,0 +1,14 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/tabtabtabai/tabtabtab-skill
+skills:
+  - file: tabtabtab.md
+    name: tabtabtab
+    description: >-
+      Control tabtabtab (ttt) cloud dev environments with the official
+      tabtabtab CLI — create/manage environments, add repos, create webhooks,
+      kick off and steer remote agents (incl. the meta agent), set up
+      automations, and check on remote work.
+    provider_published: true
+    upstream: https://github.com/tabtabtabai/tabtabtab-skill
+    surface: cli

@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: searched
+source: https://tabtabtab.ai/docs.md
+summary: >-
+  Cross-cutting request/response semantics for the TabTabTab platform, derived
+  from the published docs. TabTabTab is not a REST CRUD API; its surfaces are a
+  CLI (control plane at api.tabtabtab.ai), inbound webhooks, and outbound result
+  callbacks.
+authentication:
+  cli: "Browser OAuth via `tabtabtab auth login`; token used against api.tabtabtab.ai."
+  webhook: "The full secret webhook URL is the credential (bearer-in-URL); revoke to rotate."
+  slack: "Per-environment Slack bot token + signing secret, stored encrypted on the environment."
+  ref: authentication/tabtabtab-authentication.yml
+idempotency:
+  supported: true
+  where: "Outbound webhook result callbacks."
+  mechanism: "Each result callback carries an idempotency key so receivers can safely dedupe."
+  source: https://tabtabtab.ai/docs/webhooks
+secrets:
+  model: "Set once in the dashboard; encrypted, environment-scoped, injected at runtime."
+  guarantee: "Injected outside the agent's view — never exposed to the model, transcript, or output."
+attachments:
+  max_count: 5
+  max_total_size: 50MB
+  encoding: "data: URI (base64) in the attachments[].data field."
+  supported_types: [PNG, JPEG, WebP, GIF, text/plain, Markdown, JSON, CSV, zip]
+output_formatting:
+  json: "CLI commands accept --json for machine-readable output on parseable commands."
+destructive_actions:
+  guard: "env destroy, webhook revoke, repo env rm refuse without --yes."
+sessions:
+  model: "A session is one isolated agent run, created fresh from origin/main; parallel runs never collide."
+  identifiers: "Session IDs accept unique prefixes (e.g. ses_195d9f)."
+scheduling:
+  timezone_aware: true
+  cadences: [once, daily, weekdays, weekly, custom]
+  auto_pause: "An automation that fails 3 times in a row auto-pauses."
+cross_reference:
+  authentication: authentication/tabtabtab-authentication.yml
+  webhooks: asyncapi/tabtabtab-webhooks.yml
+  cli: cli/tabtabtab-cli.yml

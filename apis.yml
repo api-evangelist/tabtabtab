@@ -1,20 +1,62 @@
 aid: tabtabtab
 name: TabTabTab
-description: TabTabTab is a company surfaced as a portfolio company of bloomberg-beta and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  TabTabTab runs coding agents in the background, triggered by webhooks,
+  schedules, Slack, or direct requests. You wire up a trigger once and work
+  comes back to you: code changes arrive as pull requests you can verify before
+  you merge, while ops and data-analysis jobs skip the PR and report back when
+  done. Agents run on a persistent cloud VM ("environment") on your own Codex or
+  Claude Code accounts, coordinated by an always-on meta agent that routes work
+  across projects and dispatches isolated worker sessions. Every pull request
+  ships with receipts — a browser test video, a password-protected preview URL,
+  and a trace of what triggered the run — so verification is a two-minute review
+  instead of a re-investigation. Drive it from the dashboard, from Slack, or with
+  the official tabtabtab CLI and the published tabtabtab agent skill.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://tabtabtab.ai/og-image.png
 url: https://raw.githubusercontent.com/api-evangelist/tabtabtab/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - bloomberg-beta
-x-tier: stub
-x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Agents
+- AI
+- Coding Agents
+- Developer Tools
+- Automation
+- Webhooks
+- CLI
+- DevOps
+- Cloud Development Environments
+apis:
+- name: TabTabTab Platform
+  description: >-
+    Control plane (api.tabtabtab.ai) plus per-environment agent/webhook surface
+    (<env>.tabtabtab.app). Driven via the tabtabtab CLI and inbound webhooks; no
+    public OpenAPI is published.
+  humanURL: https://tabtabtab.ai/docs/overview
+  baseURL: https://api.tabtabtab.ai
+  properties:
+  - type: Documentation
+    url: https://tabtabtab.ai/docs/overview
+  - type: Webhooks
+    url: asyncapi/tabtabtab-webhooks.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +65,48 @@ maintainers:
 common:
 - type: Website
   url: https://tabtabtab.ai/
+- type: DeveloperPortal
+  url: https://dash.tabtabtab.ai
+- type: Documentation
+  url: https://tabtabtab.ai/docs/overview
+- type: APIReference
+  url: https://tabtabtab.ai/docs/cli-reference
+- type: GettingStarted
+  url: https://tabtabtab.ai/docs/quickstart
+- type: Support
+  url: mailto:support@tabtabtab.ai
+- type: GitHubOrganization
+  url: https://github.com/tabtabtabai
+- type: Pricing
+  url: https://tabtabtab.ai/pricing
+- type: TermsOfService
+  url: https://tabtabtab.ai/terms
+- type: PrivacyPolicy
+  url: https://tabtabtab.ai/privacy
+- type: SignUp
+  url: https://dash.tabtabtab.ai
+- type: ChangeLog
+  url: https://tabtabtab.ai/changelog
+- type: LLMsTxt
+  url: llms/tabtabtab-llms.txt
+- type: Packages
+  url: packages/tabtabtab-packages.yml
+- type: CLI
+  url: cli/tabtabtab-cli.yml
+- type: Webhooks
+  url: asyncapi/tabtabtab-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Conventions
+  url: conventions/tabtabtab-conventions.yml
+- type: Idempotency
+  url: conventions/tabtabtab-conventions.yml
+- type: Authentication
+  url: authentication/tabtabtab-authentication.yml
+- type: DomainSecurity
+  url: security/tabtabtab-domain-security.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 9
+  pass: local-v1

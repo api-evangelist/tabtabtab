@@ -1,0 +1,45 @@
+generated: '2026-07-21'
+method: searched
+source: https://tabtabtab.ai/docs/webhooks
+spec_type: Webhooks
+summary: >-
+  TabTabTab exposes a webhook trigger surface rather than a published AsyncAPI
+  document. Inbound webhooks start background agent runs; an optional outbound
+  callback (or Slack bridge) closes the loop with the run's result.
+inbound:
+  - name: trigger-run
+    method: POST
+    url_template: "https://<env>.tabtabtab.app/webhooks/<token>"
+    content_type: application/json
+    security: "The full secret URL is the credential (shown once at creation); treat like a password, revoke from the same panel."
+    targets:
+      - target: project
+        behavior: "Each call runs a fresh isolated session in the target repo."
+      - target: meta-agent
+        behavior: "Each call becomes a turn with the meta agent, which routes work across projects."
+    request:
+      fields:
+        - name: message
+          type: string
+          required: true
+          description: "Becomes the agent's prompt, verbatim."
+        - name: attachments
+          type: array
+          required: false
+          description: "Up to 5 files, 50MB total. Types: PNG, JPEG, WebP, GIF, text, Markdown, JSON, CSV, zip."
+          item_fields: [type, name, contentType, data]
+    response:
+      fields:
+        - name: sessionUrl
+          type: string
+          description: "URL to watch/continue the run. Fire-and-forget: returns immediately."
+outbound:
+  - name: result-callback
+    description: >-
+      Optional outgoing URL set on the webhook; TabTabTab POSTs the agent's reply
+      back when the run produces a response.
+    idempotency: "The callback carries an idempotency key so you can safely dedupe."
+    alternative: "A webhook can bridge results to Slack instead of an outgoing URL (not both)."
+notes: >-
+  No AsyncAPI/event-stream document is published; this captures the documented
+  webhook catalog. Wire type Webhooks (not AsyncAPI).

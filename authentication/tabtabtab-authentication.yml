@@ -1,0 +1,38 @@
+generated: '2026-07-21'
+method: searched
+source: https://tabtabtab.ai/docs.md
+docs: https://tabtabtab.ai/docs/cli-reference
+summary:
+  types: [oauth2, apiKey]
+  api_key_in: [url]
+  oauth2_flows: [browser-login]
+  note: >-
+    No OpenAPI is published, so this profile is captured from the developer
+    docs and the official CLI/skill rather than derived from securitySchemes.
+schemes:
+  - name: cli-oauth
+    type: oauth2
+    scheme: browser-login
+    description: >-
+      The tabtabtab CLI authenticates via `tabtabtab auth login`, a browser
+      OAuth flow, and calls the control plane at api.tabtabtab.ai.
+    sources: [docs, tabtabtab-skill]
+  - name: webhook-secret-url
+    type: apiKey
+    in: url
+    description: >-
+      Each inbound webhook is a secret URL (https://<env>.tabtabtab.app/webhooks/<token>).
+      The full URL is the credential, shown once at creation and revocable.
+    sources: [docs/webhooks]
+  - name: slack-bot
+    type: apiKey
+    in: header
+    description: >-
+      Per-environment Slack integration uses a bot token + signing secret,
+      stored encrypted on the environment and never shown back in the UI.
+    sources: [docs/slack]
+runtime_secrets:
+  model: >-
+    Application credentials (API keys, DB URLs) are set once in the dashboard,
+    stored encrypted and environment-scoped, and injected at runtime without the
+    raw value being exposed to the agent, transcript, or output.

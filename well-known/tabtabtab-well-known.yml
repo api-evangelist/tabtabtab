@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: probed
+host: https://tabtabtab.ai
+summary: >-
+  No genuine /.well-known/ discovery documents are published. The host is a SPA
+  that returns 200 with the app's index.html (text/html) for every unknown path,
+  so each probe below "succeeds" with HTTP 200 but serves the SPA shell rather
+  than a real document. Recorded as none. (The site DOES publish a genuine
+  /llms.txt — captured separately at llms/tabtabtab-llms.txt.)
+documents:
+  - path: /.well-known/security.txt
+    status: 200
+    genuine: false
+    note: SPA index.html (text/html), not RFC 9116 security.txt
+  - path: /.well-known/openid-configuration
+    status: 200
+    genuine: false
+    note: SPA index.html, not OIDC discovery
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    genuine: false
+    note: SPA index.html, not RFC 8414 metadata
+  - path: /.well-known/api-catalog
+    status: 200
+    genuine: false
+    note: SPA index.html, not RFC 9727 api-catalog
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    genuine: false
+    note: SPA index.html, not an ai-plugin manifest
