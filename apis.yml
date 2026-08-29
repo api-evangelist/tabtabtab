@@ -12,6 +12,17 @@ description: >-
   and a trace of what triggered the run — so verification is a two-minute review
   instead of a re-investigation. Drive it from the dashboard, from Slack, or with
   the official tabtabtab CLI and the published tabtabtab agent skill.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
