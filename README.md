@@ -64,6 +64,100 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-TabTabTab is a company surfaced as a portfolio company of bloomberg-beta and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+TabTabTab runs coding agents in the background, triggered by webhooks, schedules, Slack, or direct requests. You wire up a trigger once and work comes back to you: code changes arrive as pull requests you can verify before you merge, while ops and data-analysis jobs skip the PR and report back when done. Agents run on a persistent cloud VM ("environment") on your own Codex or Claude Code accounts, coordinated by an always-on meta agent that routes work across projects and dispatches isolated worker sessions. Every pull request ships with receipts — a browser test video, a password-protected preview URL, and a trace of what triggered the run — so verification is a two-minute review instead of a re-investigation. Drive it from the dashboard, from Slack, or with the official tabtabtab CLI and the published tabtabtab agent skill.
 
-Backed by: bloomberg-beta — https://tabtabtab.ai/
+**Areas:** Company · Agents · Artificial Intelligence · Coding Agents · Developer Tools · Automation · Webhook · CLI · DevOps · Cloud Development Environments
+
+## TabTabTab on APIs.io
+
+Everything profiled for TabTabTab is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/tabtabtab/](https://apis.io/providers/tabtabtab/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [TabTabTab Platform](https://apis.io/apis/tabtabtab/tabtabtab-platform/) — Control plane (api.tabtabtab.ai) plus per-environment agent/webhook surface (<env>.tabtabtab.app). Driven via the tabtabtab CLI and inbound webhooks; no…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Tabtabtab Webhooks](https://apis.io/asyncapis/tabtabtab/tabtabtab-webhooks/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Tabtabtab Authentication](https://apis.io/security/tabtabtab/tabtabtab-authentication/)
+- [Tabtabtab Domain Security](https://apis.io/security/tabtabtab/tabtabtab-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://tabtabtab.ai/)
+- [Documentation](https://tabtabtab.ai/docs/overview)
+- [Getting started](https://tabtabtab.ai/docs/quickstart)
+- [API reference](https://tabtabtab.ai/docs/cli-reference)
+- [Pricing](https://tabtabtab.ai/pricing)
+- [Sign up](https://dash.tabtabtab.ai)
+- [Changelog](https://tabtabtab.ai/changelog)
+- [Blog](https://tabtabtab.ai/blog/)
+- [Terms of service](https://tabtabtab.ai/terms)
+- [Privacy policy](https://tabtabtab.ai/privacy)
+- [GitHub](https://github.com/tabtabtabai)
+
+## API Evangelist rating
+
+**Kin Score 29.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 39.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 42.9 |
+| Access clarity | 13.2 |
+
+**Agent readiness 26.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.9** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/tabtabtab/](https://apis.io/providers/tabtabtab/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for TabTabTab: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/tabtabtab/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
